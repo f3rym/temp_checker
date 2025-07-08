@@ -55,16 +55,19 @@
 
 ```bash
 ./detecttemp.sh
+```
 Он будет каждые 30 секунд выводить температуру и сигнализировать о перегреве.
 
-⚙️ Автозагрузка через systemd
+## ⚙️ Автозагрузка через systemd
 Если хотите, чтобы скрипт запускался автоматически при старте системы:
 
 Создайте сервис-файл:
-
+```bash
 sudo nano /etc/systemd/system/detecttemp.service
 Вставьте туда:
+```
 
+```
 [Unit]
 Description=CPU Temperature Monitor (detecttemp.sh)
 After=network.target
@@ -76,24 +79,23 @@ User=your_username
 
 [Install]
 WantedBy=default.target
+```
 Замените:
-
-/full/path/to/temp_checker/detecttemp.sh на абсолютный путь к скрипту,
-
+`/full/path/to/temp_checker/detecttemp.sh` на абсолютный путь к скрипту,
 your_username на имя вашего пользователя.
 
 Обновите systemd и включите автозапуск:
-
-
+```bash
 sudo systemctl daemon-reload
 sudo systemctl enable detecttemp
 sudo systemctl start detecttemp
-Проверить статус:
+```
+### Проверить статус:
 
-systemctl status detecttemp
+`systemctl status detecttemp`
 🔥 Пример вывода
-Копировать
-Редактировать
+```
 ⚠ CPUs getting warm...
 🔥 CPUs HOT! AAAAAAAAAAAAA 🔥
+```
 Используются цвета и мигание, чтобы выделить предупреждения в терминале.
